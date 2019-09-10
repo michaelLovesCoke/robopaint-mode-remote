@@ -104,10 +104,10 @@ fieldset#control {
 }
 
 #queue .id {width: 30px}
-#queue .name {width: 70px}
+#queue .name {width: 280px; padding: 5px 1px;}
 #queue .status {width: 93px;}
-#queue .time {width: 90px;}
-#queue .settings {width: 120px;}
+#queue .time {width: 90px; display: none;}
+#queue .settings {width: 120px; display: none;}
 
 #queue tbody, thead {
   display: block;
@@ -122,7 +122,8 @@ fieldset#control {
 }
 
 #queue tbody {
-  height: 140px;
+  min-height: 140px;
+  max-height: calc(100vh - 320px);
   font-size: 0.8em;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -152,9 +153,13 @@ fieldset#control {
 #queue td.name span {
   overflow:hidden;
   display: block;
-  width: 70px;
-  white-space: nowrap;
+  width: 280px;
+  white-space: pre-line;
   text-overflow: ellipsis;
+}
+
+#queue td.name img {
+  display: none;
 }
 
 /* Auto print buttons */

@@ -65,6 +65,22 @@ robopaint.api.print = {
         }
       });
     },
+	
+	/**
+	* Reset a given print item back to waiting.
+	* @param {integer} itemID
+	*   The ID from main print API status queue listing.
+	* @param {function} callback
+	*   Function to callback when done, including data from response body
+	*/
+	reset: function(itemID, callback){
+		_post('print/' + itemID, {
+		  success: callback,
+		  error: function(e) {
+			callback(false);
+		  }
+		});
+	},
 
    /**
     * Add a new print item

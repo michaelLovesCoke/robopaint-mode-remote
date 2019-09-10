@@ -231,6 +231,10 @@ ipc.on('remoteprint', function(event, args) {
         $('#ready').click();
       }
       break;
+	case 'itemReset':
+		queue[args[1]].updateStatus('waiting');
+		checkStartQueue();
+		break;
   }
 });
 

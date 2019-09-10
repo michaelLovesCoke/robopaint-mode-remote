@@ -253,7 +253,16 @@ robopaint.api.print.bindCreateEndpoints = function(){
       } else {
         return [406, "Queue item in state '" + item.status + "' cannot be cancelled"];
       }
-    } else {
+    } else if (req.route.method == 'post') {
+		if (item.status != "waiting") {
+			item.status = 'waiting';
+			item.percentComplete = 0;
+			robopaint.api.print.pushToMode('itemReset', qid);
+			return {code: 200, body: robopaint.api.print.queue[qid]};
+		} else {
+			return [406, "Queue item in state '" + item.status + "' cannot be reset"];
+		}
+	} else {
       return false; // 405 - Method Not Supported
     }
   });
